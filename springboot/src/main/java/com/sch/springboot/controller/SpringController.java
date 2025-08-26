@@ -11,12 +11,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @Controller
 public class SpringController {
 
-    @ResponseBody  //View를 거치지 않고 문자혈 형태로 바로 전송
-    @GetMapping("/spring-api")
-    public String springApi(@ModelAttribute Member member) {
-
-        return member.toString();
-    }
 
 
     @GetMapping("/spring")
