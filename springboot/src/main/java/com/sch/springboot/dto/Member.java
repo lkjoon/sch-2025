@@ -1,11 +1,17 @@
 package com.sch.springboot.dto;
 
 public class Member {
-    //필드
-    private  String name;
-    private  int age;
-    private  String address;
-    private  String subject;
+    //Field
+    private String name;
+    private int age;
+    private String address;
+    private String subject;
+
+    //Constructor
+    public Member() {}
+
+    //Method : setter, getter
+
 
     public String getSubject() {
         return subject;
@@ -15,17 +21,12 @@ public class Member {
         this.subject = subject;
     }
 
-    //생성자
-    public Member(){}
-    //매소드
-
+    public String getName() {
+        return name;
+    }
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public String getName() {
-        return name;
     }
 
     public int getAge() {
@@ -44,3 +45,10 @@ public class Member {
         this.address = address;
     }
 }
+
+
+
+
+
+
+

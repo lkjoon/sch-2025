@@ -1,44 +1,14 @@
-<!doctype html>
-<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-  <meta charset="utf-8">
-  <title>회원 정보</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <style>
-    body{font-family: system-ui, -apple-system, Segoe UI, Roboto, 'Noto Sans KR', sans-serif; margin:0; background:#0f172a; color:#e5e7eb;}
-    .wrap{max-width:720px; margin:40px auto; padding:24px; background:#0b1020; border-radius:16px; border:1px solid #1f2a44}
-    h1{margin:0 0 16px; font-size:22px}
-    .item{display:flex; gap:12px; padding:14px 0; border-bottom:1px solid #1f2a44}
-    .item:last-child{border-bottom:none}
-    .label{width:90px; color:#94a3b8}
-    .value{font-weight:600}
-    .back{display:inline-block; margin-top:18px; padding:10px 14px; border-radius:10px; background:linear-gradient(135deg,#22d3ee,#3b82f6); color:#0b1020; text-decoration:none; font-weight:700}
-  </style>
+    <meta charset="UTF-8">
+    <title>Title</title>
 </head>
 <body>
-<main class="wrap">
-  <h1>회원 정보</h1>
-
-  <div class="item">
-    <div class="label">이름</div>
-    <div class="value" th:text="${member.getName}">홍길동</div>
-  </div>
-
-  <div class="item">
-    <div class="label">나이</div>
-    <div class="value" th:text="${member.getAge}">21</div>
-  </div>
-
-  <div class="item">
-    <div class="label">주소</div>
-    <div class="value" th:text="${member.getAddress}">충남 아산시 …</div>
-  </div>
-  <div class="item">
-    <div class="label">과목</div>
-    <div class="value" th:text="${member.getSubject}">과학 …</div>
-  </div>
-
-
-</main>
+    <h1>Hello~ Spring!!</h1>
+    <h1 th:text="'이름 : ' + ${member.getName()}"></h1>
+    <h1 th:text="'나이 : ' +  ${member.getAge()}"></h1>
+    <h1 th:text="'주소 : ' +  ${member.getAddress()}"></h1>
+    <h1 th:text="'과목 : ' +  ${member.getSubject()}"></h1>
 </body>
 </html>
