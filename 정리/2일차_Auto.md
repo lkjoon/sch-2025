@@ -240,7 +240,7 @@ public class MemberController {
 
 ## 로그인, 회원가입, - DTO, Controller, Service, Repository
 
--- Controller
+- Controller
 
 ```java
 import org.springframework.web.bind.annotation.PostMapping;
@@ -271,7 +271,7 @@ public class UserController {
 
 ```
 
--- Service
+- Service
 
 ```java
 package com.sch.springboot.service;
@@ -304,9 +304,9 @@ public class UserService {
         return userRepository.signUp(user);
     }
 }
-,,,
+```
 
--- Repository
+- Repository
 
 
 ```java
