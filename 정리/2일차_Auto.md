@@ -237,6 +237,135 @@ public class MemberController {
 
 <img src="image/RestController.png" width="600">
 
+
+## 로그인, 회원가입, - DTO, Controller, Service, Repository
+
+-- Controller
+
+```java
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import java.util.Map;
+
+@Controller
+public class UserController {
+
+    UserService userService = new UserService();
+
+    @ResponseBody
+    @PostMapping("/login")
+    public Map<String, Object> login(User user){
+
+        return userService.login(user);  //Map<String, Object>
+    }
+
+
+    @ResponseBody
+    @PostMapping("/signup")
+    public Map<String, String> signup(User user){
+
+        return userService.signUp(user);
+    }
+}
+
+```
+
+-- Service
+
+```java
+package com.sch.springboot.service;
+
+import com.sch.springboot.dto.User;
+import com.sch.springboot.repository.UserRepository;
+import org.springframework.stereotype.Service;
+
+import java.util.Map;
+
+@Service
+public class UserService {
+
+    UserRepository userRepository = new UserRepository();
+
+    /**
+     * login : 로그인 비즈니스 로직 처리
+     */
+    public Map<String, Object> login(User user) {
+        System.out.println("UserService login ---> ");
+        System.out.println(user.getId() + "," + user.getPass());
+        return userRepository.login(user);  //Map<String, Object>
+    }
+
+    /**
+     * signUp : 회원가입 비즈니스 로직 처리
+     */
+    public Map<String, String> signUp(User user) {
+
+        return userRepository.signUp(user);
+    }
+}
+,,,
+
+-- Repository
+
+
+```java
+package com.sch.springboot.repository;
+
+import com.sch.springboot.dto.User;
+import org.springframework.stereotype.Repository;
+
+import java.util.HashMap;
+import java.util.Map;
+
+@Repository
+public class UserRepository {
+    /**
+     * signUp : 회원가입 처리
+     */
+    public Map<String, String> signUp(User user) {
+        Map<String, String> result = new HashMap<>();
+
+        result.put("id", user.getId());
+        result.put("pass", user.getPass());
+        result.put("name", user.getName());
+        result.put("email", user.getEmail());
+
+        return result;
+    }
+
+
+    /**
+     * login : 로그인 처리
+     */
+    public Map<String, Object> login(User user) {
+        String did = "test";
+        String dpass = "1234";
+        Map<String, Object> result = new HashMap<String, Object>();
+
+        if(user.getId().equals(did) && user.getPass().equals(dpass)){
+            //로그인 성공
+            result.put("status", "success");
+            result.put("message", "로그인 성공!");
+            result.put("id", user.getId());
+        } else {
+            //로그인 실패
+            result.put("status", "fail");
+            result.put("message", "로그인 실패!");
+            result.put("id", user.getId());
+        }
+        return result;
+    }
+
+}
+```
+
+
+
+
+
+
+
 ## 체크리스트
 - 정적 리소스가 static 또는 public 아래에 있는지 확인한다.[1]
 - 경로 매핑(/spring, /member, /spring-api)이 의도대로 동작하는지 확인한다.[1]
