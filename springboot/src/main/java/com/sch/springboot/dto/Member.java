@@ -5,6 +5,15 @@ public class Member {
     private  String name;
     private  int age;
     private  String address;
+    private  String subject;
+
+    public String getSubject() {
+        return subject;
+    }
+
+    public void setSubject(String subject) {
+        this.subject = subject;
+    }
 
     //생성자
     public Member(){}
