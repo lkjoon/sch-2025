@@ -1,27 +1,3 @@
-# 2일차
-
-## 1. 정적 컨텐츠 : html, image emd
-- 프로젝트\src\resource\static\정적컨텐츠 저장 (public 도 사용가능)
-- 스프링부트에서 실행하지 않고, 브라우저에 전달
-
-
-## 2. View : 템플릿엔진(Thymleaf), 서블릿, JSP 파일 등
-- 요청 시 스프링 부트의 실행 순서에 따라 호출
-- D.S (디스패처 서블릿) <--> 핸들러 매핑 <-->  핸들러 어댑터(<--VIew 네임 리턴받고 D.S 전달)  <--> 컨트롤러 매핑 메소드 실행결과<-->  뷰 리졸버    <--> 뷰 리턴
-- 뷰를 실행한 결과를 브라우저에 반환 
-<img src ="image/mvc2.png"  width = "600">
-
-
-
-## 실습
-- 브라우저 :http://localhost:8080/spring   
-- /spring 컨텍스트 패스를 --> SpringController.java
-- pringController.java 실행 결과 --> 'Hello~ Spring!!'
-
-
-## @RequestParam 객체를 통해 데이터 전송 -> Member 객체생성
-- MemberController.java
-```
 package com.sch.springboot.controller;
 
 

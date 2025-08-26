@@ -1,0 +1,254 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>정보 입력 폼</title>
+  <style>
+    :root{
+      --bg: #0f172a;         /* 배경 남색톤 */
+      --panel: #111827;      /* 카드 배경 */
+      --text: #e5e7eb;       /* 기본 텍스트 */
+      --muted: #94a3b8;      /* 보조 텍스트 */
+      --accent: #22d3ee;     /* 포커스 색 (하늘-민트) */
+      --error: #ef4444;      /* 에러 */
+      --radius: 14px;
+      --pad: 14px;
+      --field-h: 56px;
+      --shadow: 0 10px 30px rgba(0,0,0,.35);
+    }
+
+    * { box-sizing: border-box; }
+    html,body { height: 100%; }
+    body{
+      margin: 0;
+      background: radial-gradient(1200px 800px at 20% 10%, #0ea5e933, transparent 60%),
+                  radial-gradient(1000px 700px at 80% 30%, #22d3ee22, transparent 60%),
+                  var(--bg);
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Noto Sans, Apple SD Gothic Neo, "Malgun Gothic", sans-serif;
+      color: var(--text);
+      display: grid;
+      place-items: center;
+      padding: 24px;
+    }
+
+    .card{
+      width: min(560px, 92vw);
+      background: linear-gradient(180deg, #0b1020, #0b1020) padding-box,
+                  linear-gradient(135deg, #3b82f6, #22d3ee) border-box;
+      border: 1px solid transparent;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .card::before{
+      content:"";
+      position:absolute; inset:-40% -10% auto auto;
+      width: 420px; height: 420px; border-radius: 50%;
+      background: radial-gradient(closest-side, #22d3ee33, transparent);
+      filter: blur(20px);
+      pointer-events: none;
+    }
+
+    .card__header{
+      padding: 28px 24px 8px;
+    }
+    .title{
+      margin: 0 0 6px;
+      font-size: 22px;
+      letter-spacing: .2px;
+    }
+    .subtitle{
+      margin: 0;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    form{
+      padding: 20px 24px 24px;
+      display: grid;
+      gap: 16px;
+    }
+
+    .field{
+      position: relative;
+    }
+
+    /* 실제 입력박스 */
+    .input{
+      width: 100%;
+      height: var(--field-h);
+      padding: 22px var(--pad) 8px var(--pad);
+      border-radius: 12px;
+      border: 1px solid #1f2a44;
+      background: #0b1020;
+      color: var(--text);
+      outline: none;
+      transition: border-color .2s, box-shadow .2s, background .2s;
+    }
+
+    /* 포커스/유효 상태 강조 (:focus-within로 래퍼에도 효과) */
+    .field:focus-within .input{
+      border-color: var(--accent);
+      box-shadow: 0 0 0 4px #22d3ee1f;
+      background: #0b1326;
+    }
+
+    /* 플로팅 라벨: placeholder는 시각적으로 숨김 */
+    .input::placeholder{ opacity: 0; }
+    .label{
+      position: absolute;
+      left: 12px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--muted);
+      pointer-events: none;
+      transition: transform .18s ease, color .18s ease, font-size .18s ease, top .18s ease;
+      background: transparent;
+      padding: 0 6px;
+    }
+
+    /* 입력 중이거나 값이 있으면 라벨을 위로 축소 이동 */
+    .input:focus + .label,
+    .input:not(:placeholder-shown) + .label{
+      top: 8px;
+      transform: none;
+      font-size: 12px;
+      color: var(--accent);
+      background: #0b1020;
+      border-radius: 6px;
+    }
+
+    /* 숫자 필드 화살표 스타일 정리 */
+    input[type="number"]{
+      -moz-appearance: textfield;
+    }
+    input[type="number"]::-webkit-outer-spin-button,
+    input[type="number"]::-webkit-inner-spin-button{
+      -webkit-appearance: none;
+      margin: 0;
+    }
+
+    /* 에러 메시지 */
+    .error{
+      display: none;
+      margin-top: 6px;
+      font-size: 12px;
+      color: var(--error);
+    }
+    .input:invalid[aria-invalid="true"] ~ .error{
+      display: block;
+    }
+
+    /* 버튼 */
+    .actions{
+      margin-top: 4px;
+      display: flex;
+      gap: 12px;
+    }
+    .btn{
+      flex: 1;
+      height: 48px;
+      border-radius: 12px;
+      border: 1px solid #1f2a44;
+      background: linear-gradient(180deg, #1f2a44, #172036);
+      color: var(--text);
+      font-weight: 600;
+      letter-spacing: .2px;
+      cursor: pointer;
+      transition: transform .06s ease, box-shadow .2s ease, background .2s ease, border-color .2s ease;
+    }
+    .btn:hover{
+      border-color: var(--accent);
+      box-shadow: 0 0 0 4px #22d3ee1a;
+      background: linear-gradient(180deg, #24304d, #1a2440);
+    }
+    .btn:active{
+      transform: translateY(1px);
+    }
+
+    .btn--primary{
+      background: linear-gradient(135deg, #22d3ee, #3b82f6);
+      color: #0b1020;
+      border: none;
+      box-shadow: 0 8px 24px #22d3ee40;
+    }
+    .btn--primary:hover{
+      filter: brightness(1.05);
+      box-shadow: 0 10px 28px #22d3ee55;
+    }
+
+    /* 반응형 */
+    @media (min-width: 640px){
+      form{
+        grid-template-columns: 1fr 1fr;
+      }
+      .field--full{ grid-column: 1 / -1; }
+      .actions{ grid-column: 1 / -1; }
+    }
+  </style>
+</head>
+<body>
+<section class="card" role="region" aria-labelledby="formTitle">
+  <header class="card__header">
+    <h1 id="formTitle" class="title">기본 정보 입력</h1>
+    <p class="subtitle">나이, 이름, 주소를 입력한다.</p>
+  </header>
+
+  <form novalidate>
+    <!-- 이름 -->
+    <div class="field">
+      <input id="name" name="name" class="input" type="text" inputmode="text"
+             placeholder="이름" autocomplete="name" required
+             aria-required="true" />
+      <label class="label" for="name">이름</label>
+      <p class="error" id="err-name">이름을 입력한다.</p>
+    </div>
+
+    <!-- 나이 -->
+    <div class="field">
+      <input id="age" name="age" class="input" type="number" inputmode="numeric"
+             placeholder="나이" min="0" max="150" required
+             aria-required="true" />
+      <label class="label" for="age">나이</label>
+      <p class="error" id="err-age">0에서 150 사이의 나이를 입력한다.</p>
+    </div>
+
+    <!-- 주소 -->
+    <div class="field field--full">
+      <input id="address" name="address" class="input" type="text" inputmode="text"
+             placeholder="주소" autocomplete="street-address" required
+             aria-required="true" />
+      <label class="label" for="address">주소</label>
+      <p class="error" id="err-address">주소를 입력한다.</p>
+    </div>
+
+    <!-- 버튼 -->
+    <div class="actions">
+      <button type="reset" class="btn">초기화</button>
+      <button type="submit" class="btn btn--primary">제출</button>
+    </div>
+  </form>
+</section>
+
+<script>
+  // 간단한 유효성 피드백: 비어 있으면 aria-invalid 적용
+  const form = document.querySelector('form');
+  form.addEventListener('input', (e) => {
+    const el = e.target.closest('.input');
+    if (!el) return;
+    const invalid = el.required && !el.value.trim();
+    el.setAttribute('aria-invalid', invalid ? 'true' : 'false');
+  });
+
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    // 실제 제출 로직은 프로젝트에 맞게 교체
+    const data = Object.fromEntries(new FormData(form).entries());
+    alert(`이름: ${data.name}\n나이: ${data.age}\n주소: ${data.address}`);
+  });
+</script>
+</body>
+</html>
