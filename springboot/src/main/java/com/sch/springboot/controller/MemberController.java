@@ -18,7 +18,7 @@ public class MemberController {
     public String member(@ModelAttribute Member member, Model model) {
         System.out.println("Post!!");
         model.addAttribute("member", member);
-        return "member";
+        return "success";
     }
 
     @GetMapping("/member")
@@ -27,6 +27,6 @@ public class MemberController {
 
         model.addAttribute("member", member);
 
-        return "member";  //view name + model 객체
+        return "success";  //view name + model 객체
     }
 }
