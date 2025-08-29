@@ -1,29 +1,38 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>사원등록 리스트</title>
 </head>
 <body>
-<h1>사원 리스트</h1>&nbsp;|&nbsp;
-<h3 th:text="${list.size}"></h3>
-<table border="1">
-  <thead>
-    <tr>
-        <th>SNO</th>
-        <th>NAME</th>
-        <th>DEPARTMENT</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr th:each="employee : ${list}">
-        <td th:text="${employee.sno}"></td>
-        <td th:text="${employee.name}"></td>
-        <td th:text="${employee.department}"></td>
-    </tr>
-</tbody>
-<a href="/employeeRegister.html">사원등록</a></h1>&nbsp;|&nbsp;
-
-
+    <h1>사원 리스트!!!</h1>
+    <h3 th:text="${list.size()}"></h3>
+    <hr>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>SNO</th>
+                <th>NAME</th>
+                <th>DEPARTMENT</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="employee : ${list}">
+                <td th:text="${employee.sno}"></td>
+                <td th:text="${employee.name}"></td>
+                <td th:text="${employee.department}"></td>
+            </tr>
+        </tbody>
+    </table>
+    <a href="http://localhost:8080/employeeRegister.html">사원 등록</a>
 </body>
 </html>
+
+
+
+
+
+
+
+
+

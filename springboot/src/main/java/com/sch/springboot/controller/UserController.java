@@ -13,28 +13,25 @@ import java.util.Map;
 @Controller
 public class UserController {
 
-    //UserService userService = new UserService();//강한결합(Tight Coupling)
+//    UserService userService = new UserService();   //강한 결합(Tight Coupling)
     UserService userService;
 
     //생성자를 통해 느슨한 결합(Loose Coupling)
     @Autowired
-    public UserController(UserService userService){
+    public UserController(UserService userService) {
         this.userService = userService;
     }
 
+    //setter 메소드를 통해 느슨한 결합(Loose Coupling)
+//    @Autowired
+//    public void setUserService(UserService userService) {
+//        this.userService = userService;
+//    }
 
-    //setter 메소드를 통한 느슨한 결합(Loose Coupling)
-    /*
-    @Autowired
-    public void setUserService(UserService userService) {
-        this.userService = userService;
-    }
-    */
 
     @ResponseBody
     @PostMapping("/login")
     public Map<String, Object> login(User user){
-
         return userService.login(user);  //Map<String, Object>
     }
 
@@ -42,7 +39,6 @@ public class UserController {
     @ResponseBody
     @PostMapping("/signup")
     public Map<String, String> signup(User user){
-
         return userService.signUp(user);
     }
 }

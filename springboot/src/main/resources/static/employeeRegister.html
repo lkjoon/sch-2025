@@ -1,31 +1,37 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
 <body>
-<h1>사원 등록</h1>
-<form action="/register" method="post">
-    <ul>
-        <li>
-            <label>사원번호</label>
-            <input type="text" name="sno">
-        </li>
-        <li>
-            <label>사원명</label>
-            <input type="text" name="name">
-        </li>
-        <li>
-            <label>부서명</label>
-            <input type="text" name="department">
-        </li>
-
-        <li>
-            <button type="submit">등록하기</button>
-            <button type="reset">다시쓰기</button>
-        </li>
-    </ul>
-</form>
+    <h1>사원 등록</h1>
+    <form action="/register"  method="post">
+        <ul>
+            <li>
+                <label>사원번호</label>
+                <input type="text" name="sno">
+            </li>
+            <li>
+                <label>사원명</label>
+                <input type="text" name="name">
+            </li>
+            <li>
+                <label>부서명</label>
+                <input type="text" name="department">
+            </li>
+            <li>
+                <button type="submit">등록하기</button>
+                <button type="reset">다시쓰기</button>
+            </li>
+        </ul>
+    </form>
 </body>
 </html>
+
+
+
+
+
+
+

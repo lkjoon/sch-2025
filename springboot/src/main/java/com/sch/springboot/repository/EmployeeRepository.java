@@ -9,22 +9,20 @@ import java.util.List;
 @Repository
 public class EmployeeRepository {
 
-    //사원객체를 저장하는  List<Employee> employees = new ArrayList<>();
+    //사원객체를 저장하는 List<Employee>
     private List<Employee> list = new ArrayList<Employee>();
 
-
     public List<Employee> selectAll() {
-        // DB select logic here
         return list;
     }
 
+
     public String insert(Employee employee) {
-        // DB insert logic here
         String result = "";
-        if ( list.add(employee)) {
-            result = "success.html";
+        if(list.add(employee)) {
+            result = "success";
         } else {
-            result = "fail.html";
+            result = "fail";
         }
         return result;
     }

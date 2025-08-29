@@ -1,0 +1,87 @@
+.dwitter {
+  width: 700px;
+  margin: auto;
+  padding: 10px;
+  border: 1px solid lightgray;
+  border-radius: 0.5rem;
+  margin-bottom: 10px;
+}
+.dwitter-sub {
+  width: 80%;
+  margin-left: 120px;
+}
+.top-title {
+  width: 700px;
+  margin: auto;
+  padding: 20px;
+}
+.content {
+  height: 50px;
+  text-indent: 10px;
+  margin-top: 5px;
+}
+.profile {
+  width: 100%;
+  padding-bottom: 5px;
+  border-bottom: 1px solid lightgray;
+}
+.profile-trash {
+  float: right;
+}
+.trash {
+  width: 100%;
+  color: #9f9a9a;
+  margin-right: 20px;
+}
+.title {
+  padding: 5px;
+  text-indent: 10px;
+}
+.image {
+  float: left;
+  margin-left: 10px;
+}
+.image img {
+  width: 90px;
+  height: 90px;
+  border-radius: 100%;
+}
+.dwitter-form {
+  width: 700px;
+  margin: auto;
+  padding: 10px;
+  border: 1px solid lightgray;
+  border-radius: 0.5rem;
+  margin-top: 20px;
+  margin-bottom: 10px;
+  background-color: #edeaea;
+}
+.dwitter-sub-form {
+  width: 100%;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  display: flex;
+  justify-content: space-between;
+}
+.name {
+  width: 15%;
+  height: 22px;
+  padding: 5px;
+  margin-left: 22px;
+  text-align: center;
+}
+.message {
+  width: 60%;
+  height: 22px;
+  padding: 5px;
+  padding-left: 15px;
+}
+.btn-register {
+  width: 80px;
+  color: white;
+  font-weight: 600;
+  border: none;
+  border-radius: 5px;
+  margin-right: 22px;
+  background-color: mediumseagreen;
+}
